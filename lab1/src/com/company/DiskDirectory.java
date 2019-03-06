@@ -4,7 +4,6 @@ import com.sun.javaws.exceptions.InvalidArgumentException;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
 import java.util.TreeSet;
 
 public class DiskDirectory extends DiskElement
@@ -17,9 +16,8 @@ public class DiskDirectory extends DiskElement
 
         if(what){
             this.children= new TreeSet<>();
-        }else{
-            Comparator c=new ElementComparator();
-            this.children = new TreeSet<>(c);
+        }else {
+            this.children = new TreeSet<>(new ElementComparator());
         }
         //this.children = new TreeSet<>(Comparator.comparing(o -> o.file.getName()));
 
@@ -38,9 +36,8 @@ public class DiskDirectory extends DiskElement
         StringBuilder info = new StringBuilder();
 
         for(int i=0;i<depth;i++) info.append('-');
-
         info.append(this.file.getName());
-        int l=50-info.length();
+        int l=51-info.length();
         for (int i=0;i<l;i++){
             info.append(" ");
         }
@@ -57,10 +54,10 @@ public class DiskDirectory extends DiskElement
         return (225*(int)this.getSize()+this.file.hashCode());
     }
 
-    //hashset function?
+
     public boolean equals(DiskElement ele){
-         if(ele==null) return false;
-         else return true;
+        if(ele==null) return false;
+        else return true;
     }
 
     @Override
@@ -74,6 +71,10 @@ public class DiskDirectory extends DiskElement
     }
 
     public int compareTo(DiskElement b){
-        return -1;
+        if(this.getSize()>b.getSize()) return 1;
+        else if (this.getSize()<b.getSize()) return -1;
+        else return 1;
+        //if(this.file.getName().compareTo(b.file.getName())>0) return 1;
+        //else return  -1;
     }
 }

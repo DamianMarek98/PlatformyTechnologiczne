@@ -9,6 +9,12 @@ public class Main
         String path = args[0];
         boolean whatToDo=false;
         if(args[1].equals("1")) whatToDo=true;
+
+        File test = new File(path);
+        if(!test.exists()){
+            System.out.println("Path not existing!");
+            return;
+        }
         try{
             DiskDirectory dir=new DiskDirectory(path, whatToDo);
             dir.print(0);

@@ -21,6 +21,7 @@ public class DiskFile extends DiskElement
         for (int i=0;i<l;i++){
             info.append(" ");
         }
+        info.append(" ");
         info.append("F "+ file.length()+" bytes ");
         info.append(template.format(file.lastModified()));
         System.out.println(info);
@@ -40,5 +41,7 @@ public class DiskFile extends DiskElement
         if(this.file.length()>b.file.length()) return 1;
         else if (this.file.length()<b.file.length()) return -1;
         else return 1;
+        //if(this.file.getName().compareTo(b.file.getName())>0) return 1;
+        //else return  -1;
     }
 }
