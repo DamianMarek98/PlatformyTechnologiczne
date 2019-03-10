@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/fxml/1"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.deny.FileUploadController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <top>
+        <Label fx:id="statusLabel" wrapText="true" prefWidth="200.0" text="Choose a file to upload">
+
+        </Label>
+    </top>
+    <center>
+        <ProgressBar fx:id="progressBar" progress="0.0" prefWidth="200.0" prefHeight="20.0">
+
+        </ProgressBar>
+    </center>
+    <bottom>
+        <Button fx:id="uploadButton" onAction="#handleButtonAction" prefWidth="200.0" prefHeight="20.0" text="Click to uplaod!">
+
+        </Button>
+    </bottom>
+
+</BorderPane>
