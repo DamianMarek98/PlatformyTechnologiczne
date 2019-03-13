@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainPane" fx:controller="sample.Controller"
+            xmlns:fx="http://javafx.com/fxml" prefHeight="150.0" prefWidth="200.0">
+
+    <top>
+        <Label alignment="TOP_CENTER" fx:id="statusLabel" wrapText="true" prefWidth="200.0" text="Choose a file to upload">
+            <BorderPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </BorderPane.margin>
+        </Label>
+    </top>
+    <bottom>
+        <ProgressBar fx:id="progressBar" progress="0.0" prefWidth="200.0" prefHeight="20.0">
+            <BorderPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </BorderPane.margin>
+        </ProgressBar>
+    </bottom>
+    <center>
+        <Button fx:id="uploadButton" onAction="#handleButtonAction" prefWidth="200.0" prefHeight="20.0"
+                text="Click here!">
+            <BorderPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </BorderPane.margin>
+        </Button>
+    </center>
+</BorderPane>
+
