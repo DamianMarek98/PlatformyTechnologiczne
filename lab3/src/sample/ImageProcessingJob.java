@@ -1,25 +1,20 @@
 package sample;
 
-import java.awt.Color;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import javafx.application.Platform;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.concurrent.Task;
-import javax.imageio.ImageIO;
 
 public class ImageProcessingJob extends Task<Void> {
-    public File sourceFile;
-    public File targetDirectory;
+    protected File sourceFile;
+    protected File targetDirectory;
 
-    public DoubleProperty progress;
-    public StringProperty status;
 
     public ImageProcessingJob(File file) {
         sourceFile = file;

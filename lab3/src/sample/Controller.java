@@ -1,44 +1,32 @@
 package sample;
 
 
-import java.io.File;
-import java.net.URL;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.TimeUnit;
-
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.ProgressBarTableCell;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.HBox;
 
-import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.TimeUnit;
 
 public class Controller implements Initializable {
     @FXML
@@ -47,6 +35,8 @@ public class Controller implements Initializable {
     Button selectFilesButton;
     @FXML
     Button selectLocationButton;
+    @FXML
+    Button startButton;
     @FXML
     Label statusLabel;
     @FXML
@@ -77,10 +67,10 @@ public class Controller implements Initializable {
 
     @FXML
     private void toggleThreads(ActionEvent event) {
-        threadingModel = 0;
+        threadingModel = 1;
         ChoiceBox threadingModelBox = new ChoiceBox(
                 FXCollections.observableArrayList(
-                        "Single thread", "Common threads pool", "2 threads", "4 threads", "8 threads"
+                        "Common threads pool", "Single thread", "2 threads", "4 threads", "8 threads", "16 threads"
                 )
         );
         threadingModelBox.setMinWidth(250);
@@ -88,7 +78,7 @@ public class Controller implements Initializable {
         box.getChildren().add(threadingModelBox);
         box.setMaxHeight(250);
         box.setPrefWidth(250);
-        box.setPadding(new Insets(5, 5, 5, 5));
+        box.setPadding(new Insets(10, 10, 10, 10));
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Threating Model");
         alert.setHeaderText("Choose one of the following :");
@@ -116,22 +106,32 @@ public class Controller implements Initializable {
 
     @FXML
     private void selectDirectory(ActionEvent event) {
-        if (jobs.isEmpty()) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setContentText("Firstly choose some files!");
-            alert.showAndWait();
-
-            return;
-        }
         Window stage = ((Node) event.getSource()).getScene().getWindow();
         dir = new DirectoryChooser().showDialog(stage);
-        if (dir == null) {
+    }
+
+    @FXML
+    private void start(ActionEvent event) {
+        if (jobs.isEmpty() && dir == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setContentText("Firstly choose some files and location!");
+            alert.showAndWait();
+            return;
+        } else if (jobs.isEmpty()) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setContentText("Choose some files!");
+            alert.showAndWait();
+            return;
+        } else if (dir == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setContentText("Choose location!");
+            alert.showAndWait();
             return;
         } else {
             new Thread(this::processing).start();
         }
-
     }
+
 
     private void processing() {
         long beginTime = System.currentTimeMillis();
@@ -151,6 +151,7 @@ public class Controller implements Initializable {
             long convertingTime = System.currentTimeMillis() - beginTime;
             Platform.runLater(() -> {
                 statusLabel.setText("Finished, duration: " + convertingTime + " ms");
+                System.out.println("Finished, duration: " + convertingTime + "ms, number of threds selected: " + threadsButton.getText());
                 disableButtons(false);
                 reloadExecutor();
             });
@@ -164,12 +165,12 @@ public class Controller implements Initializable {
     private void reloadExecutor() {
         switch (threadingModel) {
             case 0:
-                threadsButton.setText("Threads: 1");
-                executor = Executors.newSingleThreadExecutor();
-                break;
-            case 1:
                 threadsButton.setText("Common pool");
                 executor = new ForkJoinPool();
+                break;
+            case 1:
+                threadsButton.setText("Threads: 1");
+                executor = Executors.newSingleThreadExecutor();
                 break;
             case 2:
                 threadsButton.setText("Threads: 2");
@@ -183,6 +184,10 @@ public class Controller implements Initializable {
                 threadsButton.setText("Threads: 8");
                 executor = Executors.newFixedThreadPool(8);
                 break;
+            case 5:
+                threadsButton.setText("Threads: 16");
+                executor = Executors.newFixedThreadPool(16);
+                break;
         }
     }
 
@@ -190,5 +195,6 @@ public class Controller implements Initializable {
         threadsButton.setDisable(ok);
         selectFilesButton.setDisable(ok);
         selectLocationButton.setDisable(ok);
+        startButton.setDisable(ok);
     }
 }

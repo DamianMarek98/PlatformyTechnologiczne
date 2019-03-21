@@ -9,11 +9,11 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         Scene scene = new Scene(root);
-        primaryStage.setMinHeight(300);
-        primaryStage.setMinWidth(600);
+        primaryStage.setMinHeight(350);
+        primaryStage.setMinWidth(700);
         primaryStage.setTitle("Lab3 Converter");
         primaryStage.setScene(scene);
         primaryStage.show();

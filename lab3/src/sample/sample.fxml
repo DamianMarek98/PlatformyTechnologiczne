@@ -1,49 +1,47 @@
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<BorderPane id="mainPene" prefWidth="600" prefHeight="400" xmlns="http://javafx.com/javafx/8.0.111"
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane id="mainPene" prefWidth="700" prefHeight="400" xmlns="http://javafx.com/javafx/8.0.111"
             xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Controller">
     <center>
-        <TableView fx:id="imagesView" prefWidth="590">
+        <TableView fx:id="imagesView" prefWidth="690">
             <columns>
-                <TableColumn fx:id="imageNameColumn" maxWidth="Infinity" minWidth="400" text="Image Name">
+                <TableColumn fx:id="imageNameColumn" maxWidth="Infinity" minWidth="450" text="Image Name">
                 </TableColumn>
-                <TableColumn fx:id="progressColumn" maxWidth="Infinity" minWidth="100" text="Progress">
+                <TableColumn fx:id="progressColumn" maxWidth="Infinity" minWidth="125" text="Progress">
                 </TableColumn>
-                <TableColumn fx:id="statusColumn" maxWidth="Infinity" minWidth="100" text="Status">
+                <TableColumn fx:id="statusColumn" maxWidth="Infinity" minWidth="125" text="Status">
                 </TableColumn>
             </columns>
         </TableView>
     </center>
     <bottom>
-        <HBox fx:id="controlsBox" alignment="TOP_RIGHT" maxWidth="Infinity" minWidth="600" spacing="5" BorderPane.alignment="CENTER">
+        <HBox fx:id="controlsBox" alignment="TOP_RIGHT" maxWidth="Infinity" minWidth="600" spacing="20"
+              BorderPane.alignment="CENTER">
             <children>
                 <HBox alignment="CENTER_LEFT">
                     <children>
                         <Button fx:id="threadsButton" onAction="#toggleThreads" text="Threads: 1"></Button>
                         <Button fx:id="selectFilesButton" onAction="#selectFiles" text="Select files!"></Button>
-                        <Button fx:id="selectLocationButton" onAction="#selectDirectory" text="Choose location!"></Button>
+                        <Button fx:id="selectLocationButton" onAction="#selectDirectory"
+                                text="Choose location!"></Button>
+                        <Button fx:id="startButton" onAction="#start" text="start"></Button>
                     </children>
                 </HBox>
                 <Region prefWidth="10" HBox.hgrow="ALWAYS"/>
                 <Label fx:id="statusLabel" alignment="CENTER" prefWidth="200" text="Ready" HBox.hgrow="ALWAYS">
-                    <padding><Insets bottom="5" left="5" top="5" right="5"/> </padding>
+                    <padding>
+                        <Insets bottom="5" left="5" top="5" right="5"/>
+                    </padding>
                 </Label>
                 <Region prefWidth="10" HBox.hgrow="ALWAYS"/>
-                <HBox alignment="CENTER_RIGHT" spacing="5">
+                <HBox alignment="CENTER_RIGHT" spacing="20">
                     <children>
                     </children>
                 </HBox>
             </children>
             <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                <Insets bottom="5" left="5" right="5" top="5"/>
             </padding>
         </HBox>
     </bottom>
