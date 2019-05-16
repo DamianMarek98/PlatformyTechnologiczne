@@ -1,0 +1,10 @@
+C:\Users\Deny\Desktop\Studia\IV Sem\Platformy Technologiczne\lab4C++++\lab4C++++\bin\Debug\lab4C++++.exe.config
+C:\Users\Deny\Desktop\Studia\IV Sem\Platformy Technologiczne\lab4C++++\lab4C++++\bin\Debug\lab4C++++.exe
+C:\Users\Deny\Desktop\Studia\IV Sem\Platformy Technologiczne\lab4C++++\lab4C++++\bin\Debug\lab4C++++.pdb
+C:\Users\Deny\Desktop\Studia\IV Sem\Platformy Technologiczne\lab4C++++\lab4C++++\obj\Debug\lab4C++++.csprojAssemblyReference.cache
+C:\Users\Deny\Desktop\Studia\IV Sem\Platformy Technologiczne\lab4C++++\lab4C++++\obj\Debug\lab4C____.Properties.Resources.resources
+C:\Users\Deny\Desktop\Studia\IV Sem\Platformy Technologiczne\lab4C++++\lab4C++++\obj\Debug\lab4C++++.csproj.GenerateResource.cache
+C:\Users\Deny\Desktop\Studia\IV Sem\Platformy Technologiczne\lab4C++++\lab4C++++\obj\Debug\lab4C++++.csproj.CoreCompileInputs.cache
+C:\Users\Deny\Desktop\Studia\IV Sem\Platformy Technologiczne\lab4C++++\lab4C++++\obj\Debug\lab4C++++.exe
+C:\Users\Deny\Desktop\Studia\IV Sem\Platformy Technologiczne\lab4C++++\lab4C++++\obj\Debug\lab4C++++.pdb
+C:\Users\Deny\Desktop\Studia\IV Sem\Platformy Technologiczne\lab4C++++\lab4C++++\obj\Debug\lab4C____.Form1.resources
